@@ -28,20 +28,15 @@ app.get("/videos/gaming",(req,res)=>{
 });
 
 
-app.get("videos/:id",(req,res)=>{
-    let result=[];
+app.get("/videos/:id",(req,res)=>{
     const {id}=req.params;
-    const video=videos[videos];
-    for(let singleVideo of video)
-    {
-        if(singleVideo[id]===id){
-            result.push(singleVideo);
-        }
-    }
-    res.send(result);
+    const index=videos.videos.findIndex(obj=>{
+        return obj.id===id
+    })
+    res.send(videos.videos[index]);
 });
 
-app.get("videos/:title",(req,res)=>{
+app.get("/videos/:title",(req,res)=>{
     let result=[];
     const {title}=req.params;
     const video=videos[videos];
