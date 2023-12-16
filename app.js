@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors=require("cors");
-app.use(cors);
+app.use(cors());
 const videos=require("./API1.json");
 
 app.listen(4000,()=>{
