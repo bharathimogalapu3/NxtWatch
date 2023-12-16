@@ -4,7 +4,7 @@ const cors=require("cors");
 app.use(cors());
 const videos=require("./API1.json");
 
-app.listen(4000,()=>{
+app.listen(3000,()=>{
     console.log("server started");
 })
 
