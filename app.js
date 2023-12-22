@@ -86,7 +86,7 @@ function displayOutput(response){
     return updated_response;
 }
 
-app.get("/videos",async (req,res)=>{
+app.get("/videos/search",async (req,res)=>{
     const dbquery=`SELECT * from API1`;
     const response=await db.all(dbquery);
     let updated_response=displayOutput(response);
@@ -96,15 +96,18 @@ app.get("/videos",async (req,res)=>{
 app.get("/videos/trending",async (req,res)=>{
     const dbquery=`SELECT * from API2`;
     const response=await db.all(dbquery);
-    displayOutput();
+    let updated_response=displayOutput(response);
+    res.send({"videos":updated_response,"total":updated_res.length});
 });
 
-app.get("/videos/gaming",(req,res)=>{
-    res.send(gaming);
+app.get("/videos/gaming",async (req,res)=>{
+    const dbquery=`SELECT * from API2`;
+    const response=await db.all(dbquery);
+    res.send({"videos":response,"total":response.length});
 });
 
 
-app.get("/videos/:id",async (req,res)=>{
+app.get("/videos/search/:id",async (req,res)=>{
     const {id}=req.params;
     const dbQuery=`SELECT * from  API1 where id="${id}";`
     const response=await db.get(dbQuery);
