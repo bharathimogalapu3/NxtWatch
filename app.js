@@ -118,7 +118,7 @@ app.get("/videos/search/:title",async (req,res)=>{
     const {title}=req.params;
     const dbQuery=`SELECT * from  API1 where title like "%${title}%";`
     const response=await db.all(dbQuery);
-    res.send(response);
+    res.send({videos:response,total:response.length});
 });
 
 module.exports = app;
