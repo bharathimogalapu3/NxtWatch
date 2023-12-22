@@ -101,13 +101,13 @@ app.get("/videos/trending",async (req,res)=>{
 });
 
 app.get("/videos/gaming",async (req,res)=>{
-    const dbquery=`SELECT * from API2`;
+    const dbquery=`SELECT * from API3`;
     const response=await db.all(dbquery);
     res.send({"videos":response,"total":response.length});
 });
 
 
-app.get("/videos/search/:id",async (req,res)=>{
+app.get("/videos/:id",async (req,res)=>{
     const {id}=req.params;
     const dbQuery=`SELECT * from  API1 where id="${id}";`
     const response=await db.get(dbQuery);
@@ -119,7 +119,6 @@ app.get("/videos/search/:title",async (req,res)=>{
     const dbQuery=`SELECT * from  API1 where title like "%${title}%";`
     const response=await db.all(dbQuery);
     res.send(response);
-
 });
 
 module.exports = app;
